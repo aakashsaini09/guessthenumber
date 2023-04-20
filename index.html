@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number Game</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .heading{
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        .container{
+            height: 50vh;
+            width: 100%;
+            display: flex;
+        }
+        .input{
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(117, 57, 57);
+        }
+        .inp{
+            height: 43px;
+            font-size: larger;
+            width: 200px;
+            margin: 20px;
+        }
+        .btn{
+            border-radius: 7px;
+            height: 43px;
+            font-size: larger;
+            width: 100px;
+            margin: 20px;
+            background-color: rgb(34, 208, 34);
+            cursor: pointer;
+        }
+        .info{
+            width: 50%;
+            height: 100%;
+            background-color: rgb(117, 57, 57);
+            color: black;
+        }
+        #output{
+            height: 45vh;
+            width: 100%;
+            background-color: rgb(117, 57, 57);
+            font-size: 60px;
+        }
+        #totalt{
+            font-size: 40px;
+            color: antiquewhite;
+            position: relative;
+            left: 60px;
+        }
+        #reminder{
+            position: relative;
+            left: 313px;
+            top: 40px;
+            font-size: 40px;
+        }
+        #turnleft{
+            position: relative;
+            left: 124px;
+            top: 84px;
+            font-size: 40px;
+        }
+        .gameinformation{
+            position: relative;
+            left: 233px;
+            font-size: 40px;
+        }
+        @media screen and (max-width: 550px) {
+            .input{
+                width: 100%;
+                height: 30%;
+            }
+            .info{
+                width: 100%;
+                height: 30%;
+            }
+            .output{
+                width: 100%;
+                height: 30%;
+            }
+
+        }
+        </style>
+</head>
+<body>
+    <div class="heading">
+        <h1>Guess The Number Between 0 - 100</h1>
+    </div>
+    <div class="container">
+
+        <div class="input">
+            <input class="abcd inp" id="num" type="text" placeholder="Enter number here">
+            <button class="abcd btn" id="check" onclick="checkfunc()">Check</button>
+        </div>
+        <div class="info">
+             <div class="gameinformation">Game Information</div>
+            <div id="totalt"></div>
+            <h1 id="turnleft">Turn left: </h1>
+            <div id="reminder"></div>
+        </div>
+    </div>
+    <div id="output">
+
+    </div>
+</body>
+    <script>
+        let turn = 0;
+        let num = document.getElementById("num");
+        let check = document.getElementById("check");
+        let info = document.getElementsByClassName("info");
+        let r = document.getElementById("totalt");
+        let l = document.getElementById("reminder");
+        let o = document.getElementById("output");
+        //generate random number
+        let x = parseInt(Math.random() * 100);
+        function gameOver(){
+            //Code for game over. Still left to write
+        }
+        if(turn == 0){
+                    l.innerHTML = `${"10"}`
+                }  
+        function checkfunc(){
+                turn++;
+                               
+                if(turn==10){
+                    r.innerHTML = `${"You lose. Try again..........."}`
+                    l.innerHTML = `${10-turn}`
+                    o.innerHTML = `${"You are a Hopeless😒😒😒<br>Don't Play anymore....."}`
+                    gameOver()
+                }
+                else if(num.value > x){
+                    r.innerHTML = `${"Value is big. Try smaller"}`
+                    l.innerHTML = `${10-turn}`
+                }
+                else if(num.value < x){
+                    r.innerHTML = `${"Value is small. Try bigger"}`
+                    l.innerHTML = `${10-turn}`
+                }
+                else if(num.value == x){
+                    r.innerHTML = `${"Congratulation. You won.........."}`
+                    l.innerHTML = `${10-turn}`
+                    o.innerHTML = `${"You Win. Congratulation😍😍😍<br>Please reload for play again"}`
+                }
+
+                else{
+                    console.log("Something went wrong. Error.....")
+                }
+        }
+    </script>
+</html>
